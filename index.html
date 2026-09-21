@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Słowo dla Ciebie</title>
 
     <style>
@@ -27,41 +28,15 @@
             box-shadow: 0 5px 25px rgba(0,0,0,0.12);
         }
 
-        h1 {
-            font-size: 36px;
-            margin-bottom: 10px;
-        }
-
-        .subtitle {
-            font-size: 18px;
-            color: #777;
-            margin-bottom: 35px;
-        }
-
         .verse {
-            font-size: 25px;
+            font-size: 26px;
             line-height: 1.6;
-            margin: 30px 0 15px;
+            margin-bottom: 25px;
         }
 
         .reference {
             font-size: 18px;
             font-weight: bold;
-            margin-bottom: 35px;
-        }
-
-        button {
-            border: none;
-            padding: 15px 30px;
-            border-radius: 30px;
-            background: #555;
-            color: white;
-            font-size: 17px;
-            cursor: pointer;
-        }
-
-        button:hover {
-            opacity: 0.85;
         }
     </style>
 </head>
@@ -70,19 +45,9 @@
 
 <div class="container">
 
-    <h1>🕊️ Słowo dla Ciebie</h1>
-
-    <div class="subtitle">
-        Zatrzymaj się na chwilę...
-    </div>
-
     <div class="verse" id="verse"></div>
 
     <div class="reference" id="reference"></div>
-
-    <button onclick="losujFragment()">
-        🎲 Losuj słowo
-    </button>
 
 </div>
 
@@ -91,44 +56,265 @@
 const fragmenty = [
 
     {
-        tekst: "Pan jest moim pasterzem, niczego mi nie braknie.",
-        odniesienie: "Ps 23,1"
+        tekst: "Znam twoje czyny: trud i twoją wytrwałość.",
+        odniesienie: "Ap 2, 2"
     },
 
     {
-        tekst: "Wszystko mogę w Tym, który mnie umacnia.",
-        odniesienie: "Flp 4,13"
+        tekst: "Ty bowiem utworzyłeś moje nerki, Ty utkałeś mnie w łonie mej matki. Dziękuję Ci, że mnie stworzyłeś tak cudownie, godne podziwu są Twoje dzieła.",
+        odniesienie: "Ps 139, 13-14"
     },
 
     {
-        tekst: "Nie lękaj się, bo Ja jestem z tobą; nie trwóż się, bom Ja Bogiem twoim.",
-        odniesienie: "Iz 41,10"
+        tekst: "Ukochałem cię odwieczną miłością, dlatego też zachowałem dla ciebie łaskawość.",
+        odniesienie: "Jr 31, 3"
     },
 
     {
-        tekst: "Pokój zostawiam wam, pokój mój daję wam.",
-        odniesienie: "J 14,27"
+        tekst: "Przecież Pan, twój Bóg, który ci błogosławił w pracach twych rąk, opiekuje się twoją wędrówką po tej wielkiej pustyni.",
+        odniesienie: "Pwt 2, 7"
     },
 
     {
-        tekst: "Powierz Panu swoją drogę i zaufaj Mu: On sam będzie działał.",
-        odniesienie: "Ps 37,5"
+        tekst: "Czyż ci nie rozkazałem: Bądź mężny i mocny? Nie bój się i nie lękaj, ponieważ z tobą jest Pan, Bóg twój, wszędzie, gdziekolwiek pójdziesz.",
+        odniesienie: "Joz 1, 9"
+    },
+
+    {
+        tekst: "Uczynię to, o co prosisz, ponieważ jestem ci łaskawy, a znam cię po imieniu.",
+        odniesienie: "Wj 33, 17"
+    },
+
+    {
+        tekst: "Gdy pójdziesz przez wody, Ja będę z tobą, i gdy przez rzeki, nie zatopią ciebie. Gdy pójdziesz przez ogień, nie spalisz się, i nie strawi cię płomień.",
+        odniesienie: "Iz 43, 2"
+    },
+
+    {
+        tekst: "Ponieważ drogi jesteś w moich oczach, nabrałeś wartości i Ja cię miłuję.",
+        odniesienie: "Iz 43, 4"
+    },
+
+    {
+        tekst: "Wy zaś jesteście wybranym plemieniem, królewskim kapłaństwem, narodem świętym, ludem Bogu na własność przeznaczonym, abyście ogłaszali dzieła potęgi Tego, który was wezwał z ciemności do przedziwnego swojego światła.",
+        odniesienie: "1P 2, 9"
+    },
+
+    {
+        tekst: "Jesteśmy bowiem Jego dziełem, stworzeni w Chrystusie Jezusie dla dobrych czynów, które Bóg z góry przygotował, abyśmy je pełnili.",
+        odniesienie: "Ef 2, 10"
+    },
+
+    {
+        tekst: "Popatrzcie, jaką miłością obdarzył nas Ojciec: zostaliśmy nazwani dziećmi Bożymi: i rzeczywiście nimi jesteśmy.",
+        odniesienie: "1J 3, 1"
+    },
+
+    {
+        tekst: "Czyż może niewiasta zapomnieć o swym niemowlęciu, ta, która kocha syna swego łona? A nawet, gdyby ona zapomniała, Ja nie zapomnę o tobie.",
+        odniesienie: "Iz 49, 15"
+    },
+
+    {
+        tekst: "Wszystkie troski wasze przerzućcie na Niego, gdyż Jemu zależy na was.",
+        odniesienie: "1P 5, 7"
+    },
+
+    {
+        tekst: "Sam bowiem powiedział: Nie opuszczę cię ani pozostawię.",
+        odniesienie: "Hbr 13, 5"
+    },
+
+    {
+        tekst: "Nie lękaj się, bo cię wykupiłem, wezwałem cię po imieniu; tyś moim!",
+        odniesienie: "Iz 43, 1"
+    },
+
+    {
+        tekst: "Jeśli my odmawiamy wierności, On wiary dochowuje, bo nie może się zaprzeć siebie samego.",
+        odniesienie: "2Tm 2, 13"
+    },
+
+    {
+        tekst: "Jak jest odległy wschód od zachodu, tak daleko odsuwa od nas nasze występki. Jak się lituje ojciec nad synami, tak Pan się lituje nad tymi, co się Go boją.",
+        odniesienie: "Ps 103, 12-13"
+    },
+
+    {
+        tekst: "Ja sam będę pasł moje owce (...). Zagubioną odszukam, zabłąkaną sprowadzę z powrotem, skaleczoną opatrzę, chorą umocnię.",
+        odniesienie: "Ez 34, 15-16"
+    },
+
+    {
+        tekst: "Albowiem Syn Człowieczy przyszedł szukać i zbawić to, co zginęło.",
+        odniesienie: "Łk 19, 10"
+    },
+
+    {
+        tekst: "Tak też nie jest wolą Ojca waszego, który jest w niebie, żeby zginęło jedno z tych małych.",
+        odniesienie: "Mt 18, 14"
+    },
+
+    {
+        tekst: "Nie jest bowiem Bóg niesprawiedliwy, aby zapomniał o czynie waszym i miłości (...)",
+        odniesienie: "Hbr 6, 10"
+    },
+
+    {
+        tekst: "Oto wyryłem cię na obu dłoniach.",
+        odniesienie: "Iz 49, 16"
+    },
+
+    {
+        tekst: "W tym przejawia się miłość, że nie my umiłowaliśmy Boga, ale że On sam nas umiłował.",
+        odniesienie: "1J 4, 10"
+    },
+
+    {
+        tekst: "Pan wybrał was i znalazł upodobanie w was (...) ponieważ Pan was umiłował i chce dochować przysięgi danej waszym przodkom.",
+        odniesienie: "Pwt 7, 7-8"
+    },
+
+    {
+        tekst: "Pan na nowo będzie się cieszył ze świadczenia ci dobrodziejstw, jak cieszył się wyświadczając je twoim przodkom (...)",
+        odniesienie: "Pwt 30, 9"
+    },
+
+    {
+        tekst: "(...) a tego, który do Mnie przychodzi, precz nie odrzucę.",
+        odniesienie: "J 6, 37"
+    },
+
+    {
+        tekst: "Już was nie nazywam sługami (...), ale nazwałem was przyjaciółmi.",
+        odniesienie: "J 15, 15"
+    },
+
+    {
+        tekst: "Bóg zaś okazuje nam swoją miłość [właśnie] przez to, że Chrystus umarł za nas, gdyśmy byli jeszcze grzesznikami.",
+        odniesienie: "Rz 5, 8"
+    },
+
+    {
+        tekst: "Nie bój się, mała trzódko, gdyż spodobało się Ojcu waszemu dać wam królestwo.",
+        odniesienie: "Łk 12, 32"
+    },
+
+    {
+        tekst: "Ponieważ nie przeznaczył nas Bóg, abyśmy zasłużyli na gniew, ale na osiągnięcie zbawienia przez Pana naszego Jezusa Chrystusa.",
+        odniesienie: "1Tes 5, 9"
+    },
+
+    {
+        tekst: "Pan jest z tobą (...) dzielny wojowniku!",
+        odniesienie: "Sdz 6, 12"
+    },
+
+    {
+        tekst: "Wy jesteście solą dla ziemi.",
+        odniesienie: "Mt 5, 13"
+    },
+
+    {
+        tekst: "Wy jesteście światłem świata.",
+        odniesienie: "Mt 5, 14"
+    },
+
+    {
+        tekst: "Tak mówi Pan Zastępów, Przesławny (...): Kto was dotyka, dotyka źrenicy mojego oka.",
+        odniesienie: "Za 2, 12"
+    },
+
+    {
+        tekst: "(...) będę dla nich łaskawy, jak jest litościwy ojciec dla syna, który jest mu posłuszny.",
+        odniesienie: "Ml 3, 17"
+    },
+
+    {
+        tekst: "Nad wszystkim masz litość, bo wszystko w Twej mocy, i oczy zamykasz na grzechy ludzi, by się nawrócili.",
+        odniesienie: "Mdr 10, 23"
+    },
+
+    {
+        tekst: "Cieszcie się ze mną, bo znalazłem owcę, która mi zginęła.",
+        odniesienie: "Łk 15, 6"
+    },
+
+    {
+        tekst: "A zatem nie jesteś już niewolnikiem, lecz synem. Jeżeli zaś synem, to i dziedzicem z woli Bożej.",
+        odniesienie: "Ga 4, 7"
+    },
+
+    {
+        tekst: "Ten, który zapoczątkował w was dobre dzieło, dokończy go do dnia Chrystusa Jezusa.",
+        odniesienie: "Flp 1, 6"
+    },
+
+    {
+        tekst: "Pan niósł cię, jak niesie ojciec swego syna, całą drogę, którą szliście (...)",
+        odniesienie: "Pwt 1, 31"
+    },
+
+    {
+        tekst: "Jeśli będziesz Go szukał, On pozwoli ci siebie znaleźć (...)",
+        odniesienie: "1Krn 28, 9"
+    },
+
+    {
+        tekst: "Lecz On zna drogę, którą kroczę (...)",
+        odniesienie: "Hi 23, 10"
     }
 
 ];
 
-function losujFragment() {
 
-    const numer = Math.floor(Math.random() * fragmenty.length);
+// ============================================
+// LOSOWANIE BEZ POWTÓREK
+// ============================================
 
-    document.getElementById("verse").textContent =
-        "„" + fragmenty[numer].tekst + "”";
+let pozostale = JSON.parse(
+    localStorage.getItem("pozostaleFragmenty")
+);
 
-    document.getElementById("reference").textContent =
-        fragmenty[numer].odniesienie;
+if (!pozostale || pozostale.length === 0) {
+
+    pozostale = Array.from(
+        { length: fragmenty.length },
+        (_, i) => i
+    );
+
 }
 
-losujFragment();
+
+// Losowanie numeru z pozostałych
+
+const losowyIndex = Math.floor(
+    Math.random() * pozostale.length
+);
+
+const numerFragmentu = pozostale[losowyIndex];
+
+
+// Usuwamy wylosowany fragment z kolejki
+
+pozostale.splice(losowyIndex, 1);
+
+
+// Zapisujemy pozostałe fragmenty
+
+localStorage.setItem(
+    "pozostaleFragmenty",
+    JSON.stringify(pozostale)
+);
+
+
+// Wyświetlamy Słowo
+
+document.getElementById("verse").textContent =
+    "„" + fragmenty[numerFragmentu].tekst + "”";
+
+document.getElementById("reference").textContent =
+    fragmenty[numerFragmentu].odniesienie;
 
 </script>
 
