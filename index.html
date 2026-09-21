@@ -24,7 +24,10 @@
             font-family: Georgia, serif;
         }
 
-        /* Cała grafika */
+        /* ==========================================
+           GŁÓWNA GRAFIKA
+           ========================================== */
+
         .kartka {
             position: relative;
             width: 100%;
@@ -32,14 +35,17 @@
             margin: 0 auto;
         }
 
-        /* Grafika przygotowana w Canvie */
         .tlo {
             display: block;
             width: 100%;
             height: auto;
         }
 
-        /* Miejsce, w którym pojawia się cytat */
+
+        /* ==========================================
+           MIEJSCE NA CYTAT
+           ========================================== */
+
         .cytat {
             position: absolute;
 
@@ -58,57 +64,99 @@
             padding: 6% 7%;
         }
 
-        /* Sam tekst cytatu */
+
+        /* ==========================================
+           CYTAT
+           ========================================== */
+
         #verse {
+
             width: 100%;
 
             font-family: Georgia, serif;
-            font-size: clamp(18px, 3.8vw, 30px);
-            line-height: 1.45;
+
+            font-size: 34px;
+
+            line-height: 1.4;
 
             color: #315f8f;
 
             font-weight: normal;
+
+            transition: font-size 0.2s ease;
         }
 
-        /* Sigla */
+
+        /* ==========================================
+           SIGLA
+           ========================================== */
+
         #reference {
+
             margin-top: 24px;
 
             font-family: Georgia, serif;
-            font-size: clamp(15px, 2.8vw, 21px);
+
+            font-size: 20px;
 
             color: #315f8f;
 
             font-weight: bold;
         }
 
-        /* Na bardzo małych ekranach */
-        @media (max-width: 400px) {
+
+        /* ==========================================
+           TELEFONY
+           ========================================== */
+
+        @media (max-width: 600px) {
 
             #verse {
-                font-size: 18px;
-                line-height: 1.4;
+                font-size: 30px;
             }
 
             #reference {
-                margin-top: 15px;
-                font-size: 15px;
+                font-size: 18px;
+                margin-top: 18px;
+            }
+
+        }
+
+
+        @media (max-width: 400px) {
+
+            #verse {
+                font-size: 26px;
+            }
+
+            #reference {
+                font-size: 16px;
+                margin-top: 14px;
             }
 
         }
 
     </style>
+
 </head>
+
 
 <body>
 
+
 <div class="kartka">
 
-    <!-- Twoja grafika -->
-    <img src="tlo.png" class="tlo" alt="Słowo dla Ciebie">
+    <!-- GRAFIKA TABITHA -->
 
-    <!-- Tutaj kod wstawia wylosowane Słowo -->
+    <img
+        src="tlo.png"
+        class="tlo"
+        alt="Słowo dla Ciebie"
+    >
+
+
+    <!-- MIEJSCE NA CYTAT -->
+
     <div class="cytat">
 
         <div id="verse"></div>
@@ -120,7 +168,13 @@
 </div>
 
 
+
 <script>
+
+
+/* ==========================================
+   BAZA 42 SŁÓW
+   ========================================== */
 
 const fragmenty = [
 
@@ -337,13 +391,14 @@ const fragmenty = [
 ];
 
 
-// ============================================
-// LOSOWANIE BEZ POWTÓREK
-// ============================================
+/* ==========================================
+   LOSOWANIE BEZ POWTÓREK
+   ========================================== */
 
 let pozostale = JSON.parse(
     localStorage.getItem("pozostaleFragmenty")
 );
+
 
 if (!pozostale || pozostale.length === 0) {
 
@@ -355,7 +410,7 @@ if (!pozostale || pozostale.length === 0) {
 }
 
 
-// Losujemy jeden z pozostałych
+/* Losowanie */
 
 const losowyIndex = Math.floor(
     Math.random() * pozostale.length
@@ -364,12 +419,12 @@ const losowyIndex = Math.floor(
 const numerFragmentu = pozostale[losowyIndex];
 
 
-// Usuwamy go z kolejki
+/* Usuwamy wykorzystany cytat */
 
 pozostale.splice(losowyIndex, 1);
 
 
-// Zapamiętujemy kolejkę
+/* Zapamiętujemy pozostałe */
 
 localStorage.setItem(
     "pozostaleFragmenty",
@@ -377,13 +432,63 @@ localStorage.setItem(
 );
 
 
-// Wyświetlamy cytat
+/* ==========================================
+   WYŚWIETLENIE CYTATU
+   ========================================== */
 
-document.getElementById("verse").textContent =
-    "„" + fragmenty[numerFragmentu].tekst + "”";
+const verseElement =
+    document.getElementById("verse");
 
-document.getElementById("reference").textContent =
+const referenceElement =
+    document.getElementById("reference");
+
+
+const tekst =
+    "„" +
+    fragmenty[numerFragmentu].tekst +
+    "”";
+
+
+verseElement.textContent = tekst;
+
+
+referenceElement.textContent =
     fragmenty[numerFragmentu].odniesienie;
+
+
+/* ==========================================
+   AUTOMATYCZNE DOPASOWANIE WIELKOŚCI
+   ========================================== */
+
+const dlugosc = tekst.length;
+
+
+if (dlugosc < 80) {
+
+    verseElement.style.fontSize = "36px";
+
+}
+else if (dlugosc < 140) {
+
+    verseElement.style.fontSize = "32px";
+
+}
+else if (dlugosc < 200) {
+
+    verseElement.style.fontSize = "28px";
+
+}
+else if (dlugosc < 280) {
+
+    verseElement.style.fontSize = "24px";
+
+}
+else {
+
+    verseElement.style.fontSize = "21px";
+
+}
+
 
 </script>
 
