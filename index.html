@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Słowo dla Ciebie</title>
+
+    <style>
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #f5f1e8;
+            font-family: Georgia, serif;
+            color: #333;
+        }
+
+        .container {
+            max-width: 650px;
+            margin: 20px;
+            padding: 45px 30px;
+            background: white;
+            text-align: center;
+            border-radius: 18px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.12);
+        }
+
+        h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 18px;
+            color: #777;
+            margin-bottom: 35px;
+        }
+
+        .verse {
+            font-size: 25px;
+            line-height: 1.6;
+            margin: 30px 0 15px;
+        }
+
+        .reference {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 35px;
+        }
+
+        button {
+            border: none;
+            padding: 15px 30px;
+            border-radius: 30px;
+            background: #555;
+            color: white;
+            font-size: 17px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            opacity: 0.85;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>🕊️ Słowo dla Ciebie</h1>
+
+    <div class="subtitle">
+        Zatrzymaj się na chwilę...
+    </div>
+
+    <div class="verse" id="verse"></div>
+
+    <div class="reference" id="reference"></div>
+
+    <button onclick="losujFragment()">
+        🎲 Losuj słowo
+    </button>
+
+</div>
+
+<script>
+
+const fragmenty = [
+
+    {
+        tekst: "Pan jest moim pasterzem, niczego mi nie braknie.",
+        odniesienie: "Ps 23,1"
+    },
+
+    {
+        tekst: "Wszystko mogę w Tym, który mnie umacnia.",
+        odniesienie: "Flp 4,13"
+    },
+
+    {
+        tekst: "Nie lękaj się, bo Ja jestem z tobą; nie trwóż się, bom Ja Bogiem twoim.",
+        odniesienie: "Iz 41,10"
+    },
+
+    {
+        tekst: "Pokój zostawiam wam, pokój mój daję wam.",
+        odniesienie: "J 14,27"
+    },
+
+    {
+        tekst: "Powierz Panu swoją drogę i zaufaj Mu: On sam będzie działał.",
+        odniesienie: "Ps 37,5"
+    }
+
+];
+
+function losujFragment() {
+
+    const numer = Math.floor(Math.random() * fragmenty.length);
+
+    document.getElementById("verse").textContent =
+        "„" + fragmenty[numer].tekst + "”";
+
+    document.getElementById("reference").textContent =
+        fragmenty[numer].odniesienie;
+}
+
+losujFragment();
+
+</script>
+
+</body>
+</html>
