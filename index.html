@@ -1,152 +1,135 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Słowo dla Ciebie</title>
+<title>Słowo dla Ciebie</title>
 
-    <style>
+<style>
 
-        * {
-            box-sizing: border-box;
-        }
+* {
+    box-sizing: border-box;
+}
 
-        html, body {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            min-height: 100%;
-        }
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    background: #ffffff;
+}
 
-        body {
-            background: #f5f1e8;
-            font-family: Georgia, serif;
-        }
+body {
+    display: flex;
+    justify-content: center;
+    font-family: Georgia, serif;
+}
 
-        /* ==========================================
-           GŁÓWNA GRAFIKA
-           ========================================== */
+/* CAŁA KARTKA */
+.kartka {
+    position: relative;
+    width: 100%;
+    max-width: 928px;
+    line-height: 1;
+}
 
-        .kartka {
-            position: relative;
-            width: 100%;
-            max-width: 700px;
-            margin: 0 auto;
-        }
+/* TWOJE TŁO */
+.tlo {
+    display: block;
+    width: 100%;
+    height: auto;
+}
 
-        .tlo {
-            display: block;
-            width: 100%;
-            height: auto;
-        }
+/* OBSZAR, W KTÓRYM POJAWIA SIĘ CYTAT */
+.obszar-cytatu {
+    position: absolute;
 
+    /* dokładne położenie względem grafiki */
+    left: 8%;
+    top: 32.3%;
 
-        /* ==========================================
-           MIEJSCE NA CYTAT
-           ========================================== */
+    width: 84%;
+    height: 39.5%;
 
-        .cytat {
-            position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
-            top: 34%;
-            left: 9%;
-            width: 82%;
-            height: 42%;
+    padding: 5% 6%;
 
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
+    text-align: center;
 
-            text-align: center;
+    overflow: hidden;
+}
 
-            padding: 6% 7%;
-        }
+/* CYTAT */
+#verse {
+    width: 100%;
+    margin: 0;
 
+    color: #315f8f;
 
-        /* ==========================================
-           CYTAT
-           ========================================== */
+    font-family: Georgia, "Times New Roman", serif;
+    font-weight: normal;
 
-        #verse {
+    font-size: 34px;
+    line-height: 1.35;
 
-            width: 100%;
+    text-align: center;
 
-            font-family: Georgia, serif;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+}
 
-            font-size: 34px;
+/* SIGLUM */
+#reference {
+    width: 100%;
 
-            line-height: 1.4;
+    margin-top: 18px;
 
-            color: #315f8f;
+    color: #315f8f;
 
-            font-weight: normal;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 21px;
+    font-weight: bold;
 
-            transition: font-size 0.2s ease;
-        }
+    text-align: center;
 
+    flex-shrink: 0;
+}
 
-        /* ==========================================
-           SIGLA
-           ========================================== */
+/* TELEFON */
+@media (max-width: 600px) {
 
-        #reference {
+    #verse {
+        font-size: 25px;
+    }
 
-            margin-top: 24px;
+    #reference {
+        font-size: 17px;
+        margin-top: 12px;
+    }
+}
 
-            font-family: Georgia, serif;
+/* MAŁY TELEFON */
+@media (max-width: 400px) {
 
-            font-size: 20px;
+    #verse {
+        font-size: 21px;
+    }
 
-            color: #315f8f;
+    #reference {
+        font-size: 15px;
+    }
+}
 
-            font-weight: bold;
-        }
-
-
-        /* ==========================================
-           TELEFONY
-           ========================================== */
-
-        @media (max-width: 600px) {
-
-            #verse {
-                font-size: 30px;
-            }
-
-            #reference {
-                font-size: 18px;
-                margin-top: 18px;
-            }
-
-        }
-
-
-        @media (max-width: 400px) {
-
-            #verse {
-                font-size: 26px;
-            }
-
-            #reference {
-                font-size: 16px;
-                margin-top: 14px;
-            }
-
-        }
-
-    </style>
-
+</style>
 </head>
-
 
 <body>
 
-
 <div class="kartka">
-
-    <!-- GRAFIKA TABITHA -->
 
     <img
         src="tlo.png"
@@ -154,12 +137,9 @@
         alt="Słowo dla Ciebie"
     >
 
+    <div class="obszar-cytatu">
 
-    <!-- MIEJSCE NA CYTAT -->
-
-    <div class="cytat">
-
-        <div id="verse"></div>
+        <p id="verse"></p>
 
         <div id="reference"></div>
 
@@ -168,263 +148,250 @@
 </div>
 
 
-
 <script>
 
-
-/* ==========================================
-   BAZA 42 SŁÓW
-   ========================================== */
+/* =========================================================
+   42 SŁOWA
+   ========================================================= */
 
 const fragmenty = [
 
-    {
-        tekst: "Znam twoje czyny: trud i twoją wytrwałość.",
-        odniesienie: "Ap 2, 2"
-    },
+{
+    tekst: "Znam twoje czyny: trud i twoją wytrwałość.",
+    siglum: "Ap 2, 2"
+},
 
-    {
-        tekst: "Ty bowiem utworzyłeś moje nerki, Ty utkałeś mnie w łonie mej matki. Dziękuję Ci, że mnie stworzyłeś tak cudownie, godne podziwu są Twoje dzieła.",
-        odniesienie: "Ps 139, 13-14"
-    },
+{
+    tekst: "Ty bowiem utworzyłeś moje nerki, Ty utkałeś mnie w łonie mej matki. Dziękuję Ci, że mnie stworzyłeś tak cudownie, godne podziwu są Twoje dzieła.",
+    siglum: "Ps 139, 13-14"
+},
 
-    {
-        tekst: "Ukochałem cię odwieczną miłością, dlatego też zachowałem dla ciebie łaskawość.",
-        odniesienie: "Jr 31, 3"
-    },
+{
+    tekst: "Ukochałem cię odwieczną miłością, dlatego też zachowałem dla ciebie łaskawość.",
+    siglum: "Jr 31, 3"
+},
 
-    {
-        tekst: "Przecież Pan, twój Bóg, który ci błogosławił w pracach twych rąk, opiekuje się twoją wędrówką po tej wielkiej pustyni.",
-        odniesienie: "Pwt 2, 7"
-    },
+{
+    tekst: "Przecież Pan, twój Bóg, który ci błogosławił w pracach twych rąk, opiekuje się twoją wędrówką po tej wielkiej pustyni.",
+    siglum: "Pwt 2, 7"
+},
 
-    {
-        tekst: "Czyż ci nie rozkazałem: Bądź mężny i mocny? Nie bój się i nie lękaj, ponieważ z tobą jest Pan, Bóg twój, wszędzie, gdziekolwiek pójdziesz.",
-        odniesienie: "Joz 1, 9"
-    },
+{
+    tekst: "Czyż ci nie rozkazałem: Bądź mężny i mocny? Nie bój się i nie lękaj, ponieważ z tobą jest Pan, Bóg twój, wszędzie, gdziekolwiek pójdziesz",
+    siglum: "Joz 1, 9"
+},
 
-    {
-        tekst: "Uczynię to, o co prosisz, ponieważ jestem ci łaskawy, a znam cię po imieniu.",
-        odniesienie: "Wj 33, 17"
-    },
+{
+    tekst: "Uczynię to, o co prosisz, ponieważ jestem ci łaskawy, a znam cię po imieniu",
+    siglum: "Wj 33, 17"
+},
 
-    {
-        tekst: "Gdy pójdziesz przez wody, Ja będę z tobą, i gdy przez rzeki, nie zatopią ciebie. Gdy pójdziesz przez ogień, nie spalisz się, i nie strawi cię płomień.",
-        odniesienie: "Iz 43, 2"
-    },
+{
+    tekst: "Gdy pójdziesz przez wody, Ja będę z tobą, i gdy przez rzeki, nie zatopią ciebie. Gdy pójdziesz przez ogień, nie spalisz się, i nie strawi cię płomień.",
+    siglum: "Iz 43, 2"
+},
 
-    {
-        tekst: "Ponieważ drogi jesteś w moich oczach, nabrałeś wartości i Ja cię miłuję.",
-        odniesienie: "Iz 43, 4"
-    },
+{
+    tekst: "Ponieważ drogi jesteś w moich oczach, nabrałeś wartości i Ja cię miłuję.",
+    siglum: "Iz 43, 4"
+},
 
-    {
-        tekst: "Wy zaś jesteście wybranym plemieniem, królewskim kapłaństwem, narodem świętym, ludem Bogu na własność przeznaczonym, abyście ogłaszali dzieła potęgi Tego, który was wezwał z ciemności do przedziwnego swojego światła.",
-        odniesienie: "1P 2, 9"
-    },
+{
+    tekst: "Wy zaś jesteście wybranym plemieniem, królewskim kapłaństwem, narodem świętym, ludem Bogu na własność przeznaczonym, abyście ogłaszali dzieła potęgi Tego, który was wezwał z ciemności do przedziwnego swojego światła",
+    siglum: "1P 2, 9"
+},
 
-    {
-        tekst: "Jesteśmy bowiem Jego dziełem, stworzeni w Chrystusie Jezusie dla dobrych czynów, które Bóg z góry przygotował, abyśmy je pełnili.",
-        odniesienie: "Ef 2, 10"
-    },
+{
+    tekst: "Jesteśmy bowiem Jego dziełem, stworzeni w Chrystusie Jezusie dla dobrych czynów, które Bóg z góry przygotował, abyśmy je pełnili.",
+    siglum: "Ef 2, 10"
+},
 
-    {
-        tekst: "Popatrzcie, jaką miłością obdarzył nas Ojciec: zostaliśmy nazwani dziećmi Bożymi: i rzeczywiście nimi jesteśmy.",
-        odniesienie: "1J 3, 1"
-    },
+{
+    tekst: "Popatrzcie, jaką miłością obdarzył nas Ojciec: zostaliśmy nazwani dziećmi Bożymi: i rzeczywiście nimi jesteśmy.",
+    siglum: "1J 3, 1"
+},
 
-    {
-        tekst: "Czyż może niewiasta zapomnieć o swym niemowlęciu, ta, która kocha syna swego łona? A nawet, gdyby ona zapomniała, Ja nie zapomnę o tobie.",
-        odniesienie: "Iz 49, 15"
-    },
+{
+    tekst: "Czyż może niewiasta zapomnieć o swym niemowlęciu, ta, która kocha syna swego łona? A nawet, gdyby ona zapomniała, Ja nie zapomnę o tobie",
+    siglum: "Iz 49, 15"
+},
 
-    {
-        tekst: "Wszystkie troski wasze przerzućcie na Niego, gdyż Jemu zależy na was.",
-        odniesienie: "1P 5, 7"
-    },
+{
+    tekst: "Wszystkie troski wasze przerzućcie na Niego, gdyż Jemu zależy na was.",
+    siglum: "1P 5, 7"
+},
 
-    {
-        tekst: "Sam bowiem powiedział: Nie opuszczę cię ani pozostawię.",
-        odniesienie: "Hbr 13, 5"
-    },
+{
+    tekst: "Sam bowiem powiedział: Nie opuszczę cię ani pozostawię",
+    siglum: "Hbr 13, 5"
+},
 
-    {
-        tekst: "Nie lękaj się, bo cię wykupiłem, wezwałem cię po imieniu; tyś moim!",
-        odniesienie: "Iz 43, 1"
-    },
+{
+    tekst: "Nie lękaj się, bo cię wykupiłem, wezwałem cię po imieniu; tyś moim!",
+    siglum: "Iz 43, 1"
+},
 
-    {
-        tekst: "Jeśli my odmawiamy wierności, On wiary dochowuje, bo nie może się zaprzeć siebie samego.",
-        odniesienie: "2Tm 2, 13"
-    },
+{
+    tekst: "Jeśli my odmawiamy wierności, On wiary dochowuje, bo nie może się zaprzeć siebie samego.",
+    siglum: "2Tm 2, 13"
+},
 
-    {
-        tekst: "Jak jest odległy wschód od zachodu, tak daleko odsuwa od nas nasze występki. Jak się lituje ojciec nad synami, tak Pan się lituje nad tymi, co się Go boją.",
-        odniesienie: "Ps 103, 12-13"
-    },
+{
+    tekst: "Jak jest odległy wschód od zachodu, tak daleko odsuwa od nas nasze występki. Jak się lituje ojciec nad synami, tak Pan się lituje nad tymi, co się Go boją.",
+    siglum: "Ps 103, 12-13"
+},
 
-    {
-        tekst: "Ja sam będę pasł moje owce (...) Zagubioną odszukam, zabłąkaną sprowadzę z powrotem, skaleczoną opatrzę, chorą umocnię.",
-        odniesienie: "Ez 34, 15-16"
-    },
+{
+    tekst: "Ja sam będę pasł moje owce (...). Zagubioną odszukam, zabłąkaną sprowadzę z powrotem, skaleczoną opatrzę, chorą umocnię.",
+    siglum: "Ez 34, 15-16"
+},
 
-    {
-        tekst: "Albowiem Syn Człowieczy przyszedł szukać i zbawić to, co zginęło.",
-        odniesienie: "Łk 19, 10"
-    },
+{
+    tekst: "Albowiem Syn Człowieczy przyszedł szukać i zbawić to, co zginęło.",
+    siglum: "Łk 19, 10"
+},
 
-    {
-        tekst: "Tak też nie jest wolą Ojca waszego, który jest w niebie, żeby zginęło jedno z tych małych.",
-        odniesienie: "Mt 18, 14"
-    },
+{
+    tekst: "Tak też nie jest wolą Ojca waszego, który jest w niebie, żeby zginęło jedno z tych małych.",
+    siglum: "Mt 18, 14"
+},
 
-    {
-        tekst: "Nie jest bowiem Bóg niesprawiedliwy, aby zapomniał o czynie waszym i miłości (...).",
-        odniesienie: "Hbr 6, 10"
-    },
+{
+    tekst: "Nie jest bowiem Bóg niesprawiedliwy, aby zapomniał o czynie waszym i miłości (...)",
+    siglum: "Hbr 6, 10"
+},
 
-    {
-        tekst: "Oto wyryłem cię na obu dłoniach.",
-        odniesienie: "Iz 49, 16"
-    },
+{
+    tekst: "Oto wyryłem cię na obu dłoniach",
+    siglum: "Iz 49, 16"
+},
 
-    {
-        tekst: "W tym przejawia się miłość, że nie my umiłowaliśmy Boga, ale że On sam nas umiłował.",
-        odniesienie: "1J 4, 10"
-    },
+{
+    tekst: "W tym przejawia się miłość, że nie my umiłowaliśmy Boga, ale że On sam nas umiłował.",
+    siglum: "1J 4, 10"
+},
 
-    {
-        tekst: "Pan wybrał was i znalazł upodobanie w was (...) ponieważ Pan was umiłował i chce dochować przysięgi danej waszym przodkom.",
-        odniesienie: "Pwt 7, 7-8"
-    },
+{
+    tekst: "Pan wybrał was i znalazł upodobanie w was (...) ponieważ Pan was umiłował i chce dochować przysięgi danej waszym przodkom.",
+    siglum: "Pwt 7, 7-8"
+},
 
-    {
-        tekst: "Pan na nowo będzie się cieszył ze świadczenia ci dobrodziejstw, jak cieszył się wyświadczając je twoim przodkom (...).",
-        odniesienie: "Pwt 30, 9"
-    },
+{
+    tekst: "Pan na nowo będzie się cieszył ze świadczenia ci dobrodziejstw, jak cieszył się wyświadczając je twoim przodkom (...)",
+    siglum: "Pwt 30, 9"
+},
 
-    {
-        tekst: "(...) a tego, który do Mnie przychodzi, precz nie odrzucę.",
-        odniesienie: "J 6, 37"
-    },
+{
+    tekst: "(...) a tego, który do Mnie przychodzi, precz nie odrzucę",
+    siglum: "J 6, 37"
+},
 
-    {
-        tekst: "Już was nie nazywam sługami (...), ale nazwałem was przyjaciółmi.",
-        odniesienie: "J 15, 15"
-    },
+{
+    tekst: "Już was nie nazywam sługami (...), ale nazwałem was przyjaciółmi.",
+    siglum: "J 15, 15"
+},
 
-    {
-        tekst: "Bóg zaś okazuje nam swoją miłość [właśnie] przez to, że Chrystus umarł za nas, gdyśmy byli jeszcze grzesznikami.",
-        odniesienie: "Rz 5, 8"
-    },
+{
+    tekst: "Bóg zaś okazuje nam swoją miłość [właśnie] przez to, że Chrystus umarł za nas, gdyśmy byli jeszcze grzesznikami.",
+    siglum: "Rz 5, 8"
+},
 
-    {
-        tekst: "Nie bój się, mała trzódko, gdyż spodobało się Ojcu waszemu dać wam królestwo.",
-        odniesienie: "Łk 12, 32"
-    },
+{
+    tekst: "Nie bój się, mała trzódko, gdyż spodobało się Ojcu waszemu dać wam królestwo.",
+    siglum: "Łk 12, 32"
+},
 
-    {
-        tekst: "Ponieważ nie przeznaczył nas Bóg, abyśmy zasłużyli na gniew, ale na osiągnięcie zbawienia przez Pana naszego Jezusa Chrystusa.",
-        odniesienie: "1Tes 5, 9"
-    },
+{
+    tekst: "Ponieważ nie przeznaczył nas Bóg, abyśmy zasłużyli na gniew, ale na osiągnięcie zbawienia przez Pana naszego Jezusa Chrystusa",
+    siglum: "1Tes 5, 9"
+},
 
-    {
-        tekst: "Pan jest z tobą (...) dzielny wojowniku!",
-        odniesienie: "Sdz 6, 12"
-    },
+{
+    tekst: "Pan jest z tobą (...) dzielny wojowniku!",
+    siglum: "Sdz 6, 12"
+},
 
-    {
-        tekst: "Wy jesteście solą dla ziemi.",
-        odniesienie: "Mt 5, 13"
-    },
+{
+    tekst: "Wy jesteście solą dla ziemi.",
+    siglum: "Mt 5, 13"
+},
 
-    {
-        tekst: "Wy jesteście światłem świata.",
-        odniesienie: "Mt 5, 14"
-    },
+{
+    tekst: "Wy jesteście światłem świata.",
+    siglum: "Mt 5, 14"
+},
 
-    {
-        tekst: "Tak mówi Pan Zastępów, Przesławny (...): Kto was dotyka, dotyka źrenicy mojego oka.",
-        odniesienie: "Za 2, 12"
-    },
+{
+    tekst: "Tak mówi Pan Zastępów, Przesławny (...): Kto was dotyka, dotyka źrenicy mojego oka",
+    siglum: "Za 2, 12"
+},
 
-    {
-        tekst: "(...) będę dla nich łaskawy, jak jest litościwy ojciec dla syna, który jest mu posłuszny.",
-        odniesienie: "Ml 3, 17"
-    },
+{
+    tekst: "(...) będę dla nich łaskawy, jak jest litościwy ojciec dla syna, który jest mu posłuszny",
+    siglum: "Ml 3, 17"
+},
 
-    {
-        tekst: "Nad wszystkim masz litość, bo wszystko w Twej mocy, i oczy zamykasz na grzechy ludzi, by się nawrócili.",
-        odniesienie: "Mdr 10, 23"
-    },
+{
+    tekst: "Nad wszystkim masz litość, bo wszystko w Twej mocy, i oczy zamykasz na grzechy ludzi, by się nawrócili",
+    siglum: "Mdr 10, 23"
+},
 
-    {
-        tekst: "Cieszcie się ze mną, bo znalazłem owcę, która mi zginęła.",
-        odniesienie: "Łk 15, 6"
-    },
+{
+    tekst: "Cieszcie się ze mną, bo znalazłem owcę, która mi zginęła.",
+    siglum: "Łk 15, 6"
+},
 
-    {
-        tekst: "A zatem nie jesteś już niewolnikiem, lecz synem. Jeżeli zaś synem, to i dziedzicem z woli Bożej.",
-        odniesienie: "Ga 4, 7"
-    },
+{
+    tekst: "A zatem nie jesteś już niewolnikiem, lecz synem. Jeżeli zaś synem, to i dziedzicem z woli Bożej.",
+    siglum: "Ga 4, 7"
+},
 
-    {
-        tekst: "Ten, który zapoczątkował w was dobre dzieło, dokończy go do dnia Chrystusa Jezusa.",
-        odniesienie: "Flp 1, 6"
-    },
+{
+    tekst: "Ten, który zapoczątkował w was dobre dzieło, dokończy go do dnia Chrystusa Jezusa",
+    siglum: "Flp 1, 6"
+},
 
-    {
-        tekst: "Pan niósł cię, jak niesie ojciec swego syna, całą drogę, którą szliście (...).",
-        odniesienie: "Pwt 1, 31"
-    },
+{
+    tekst: "Pan niósł cię, jak niesie ojciec swego syna, całą drogę, którą szliście (...)",
+    siglum: "Pwt 1, 31"
+},
 
-    {
-        tekst: "Jeśli będziesz Go szukał, On pozwoli ci siebie znaleźć (...).",
-        odniesienie: "1Krn 28, 9"
-    },
+{
+    tekst: "Jeśli będziesz Go szukał, On pozwoli ci siebie znaleźć (...)",
+    siglum: "1Krn 28, 9"
+},
 
-    {
-        tekst: "Lecz On zna drogę, którą kroczę (...).",
-        odniesienie: "Hi 23, 10"
-    }
+{
+    tekst: "Lecz On zna drogę, którą kroczę (...)",
+    siglum: "Hi 23, 10"
+}
 
 ];
 
 
-/* ==========================================
+/* =========================================================
    LOSOWANIE BEZ POWTÓREK
-   ========================================== */
+   ========================================================= */
 
 let pozostale = JSON.parse(
     localStorage.getItem("pozostaleFragmenty")
 );
 
-
-if (!pozostale || pozostale.length === 0) {
-
-    pozostale = Array.from(
-        { length: fragmenty.length },
-        (_, i) => i
-    );
-
+if (!Array.isArray(pozostale) || pozostale.length === 0) {
+    pozostale = fragmenty.map((_, index) => index);
 }
 
 
-/* Losowanie */
-
+/* LOSOWANIE */
 const losowyIndex = Math.floor(
     Math.random() * pozostale.length
 );
 
-const numerFragmentu = pozostale[losowyIndex];
+const numer = pozostale[losowyIndex];
 
 
-/* Usuwamy wykorzystany cytat */
-
+/* USUWAMY WYLOSOWANY */
 pozostale.splice(losowyIndex, 1);
-
-
-/* Zapamiętujemy pozostałe */
 
 localStorage.setItem(
     "pozostaleFragmenty",
@@ -432,63 +399,73 @@ localStorage.setItem(
 );
 
 
-/* ==========================================
-   WYŚWIETLENIE CYTATU
-   ========================================== */
+/* WYŚWIETLAMY */
+document.getElementById("verse").textContent =
+    "„" + fragmenty[numer].tekst + "”";
 
-const verseElement =
-    document.getElementById("verse");
-
-const referenceElement =
-    document.getElementById("reference");
+document.getElementById("reference").textContent =
+    fragmenty[numer].siglum;
 
 
-const tekst =
-    "„" +
-    fragmenty[numerFragmentu].tekst +
-    "”";
+/* =========================================================
+   AUTOMATYCZNE DOPASOWANIE CZCIONKI
+   ========================================================= */
+
+function dopasujTekst() {
+
+    const obszar = document.querySelector(".obszar-cytatu");
+    const verse = document.getElementById("verse");
+    const reference = document.getElementById("reference");
+
+    /*
+       Zaczynamy od dużej czcionki.
+    */
+
+    let rozmiar = Math.min(
+        34,
+        Math.max(18, window.innerWidth * 0.037)
+    );
+
+    verse.style.fontSize = rozmiar + "px";
 
 
-verseElement.textContent = tekst;
+    /*
+       Jeżeli tekst jest za duży,
+       zmniejszamy go po 1 px,
+       aż zmieści się w ramce.
+    */
 
+    while (
+        (
+            verse.scrollHeight + reference.offsetHeight + 25
+            > obszar.clientHeight
+        )
+        &&
+        rozmiar > 15
+    ) {
 
-referenceElement.textContent =
-    fragmenty[numerFragmentu].odniesienie;
+        rozmiar -= 1;
 
-
-/* ==========================================
-   AUTOMATYCZNE DOPASOWANIE WIELKOŚCI
-   ========================================== */
-
-const dlugosc = tekst.length;
-
-
-if (dlugosc < 80) {
-
-    verseElement.style.fontSize = "36px";
-
-}
-else if (dlugosc < 140) {
-
-    verseElement.style.fontSize = "32px";
-
-}
-else if (dlugosc < 200) {
-
-    verseElement.style.fontSize = "28px";
-
-}
-else if (dlugosc < 280) {
-
-    verseElement.style.fontSize = "24px";
-
-}
-else {
-
-    verseElement.style.fontSize = "21px";
-
+        verse.style.fontSize =
+            rozmiar + "px";
+    }
 }
 
+
+/* Czekamy aż obraz się załaduje */
+window.addEventListener("load", function() {
+
+    setTimeout(dopasujTekst, 100);
+
+});
+
+
+/* Dopasowanie również po zmianie wielkości okna */
+window.addEventListener("resize", function() {
+
+    dopasujTekst();
+
+});
 
 </script>
 
