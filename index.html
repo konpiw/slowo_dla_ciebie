@@ -7,49 +7,118 @@
     <title>Słowo dla Ciebie</title>
 
     <style>
-        body {
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html, body {
             margin: 0;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            padding: 0;
+            width: 100%;
+            min-height: 100%;
+        }
+
+        body {
             background: #f5f1e8;
             font-family: Georgia, serif;
-            color: #333;
         }
 
-        .container {
-            max-width: 650px;
-            margin: 20px;
-            padding: 45px 30px;
-            background: white;
+        /* Cała grafika */
+        .kartka {
+            position: relative;
+            width: 100%;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Grafika przygotowana w Canvie */
+        .tlo {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
+        /* Miejsce, w którym pojawia się cytat */
+        .cytat {
+            position: absolute;
+
+            top: 34%;
+            left: 9%;
+            width: 82%;
+            height: 42%;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
             text-align: center;
-            border-radius: 18px;
-            box-shadow: 0 5px 25px rgba(0,0,0,0.12);
+
+            padding: 6% 7%;
         }
 
-        .verse {
-            font-size: 26px;
-            line-height: 1.6;
-            margin-bottom: 25px;
+        /* Sam tekst cytatu */
+        #verse {
+            width: 100%;
+
+            font-family: Georgia, serif;
+            font-size: clamp(18px, 3.8vw, 30px);
+            line-height: 1.45;
+
+            color: #315f8f;
+
+            font-weight: normal;
         }
 
-        .reference {
-            font-size: 18px;
+        /* Sigla */
+        #reference {
+            margin-top: 24px;
+
+            font-family: Georgia, serif;
+            font-size: clamp(15px, 2.8vw, 21px);
+
+            color: #315f8f;
+
             font-weight: bold;
         }
+
+        /* Na bardzo małych ekranach */
+        @media (max-width: 400px) {
+
+            #verse {
+                font-size: 18px;
+                line-height: 1.4;
+            }
+
+            #reference {
+                margin-top: 15px;
+                font-size: 15px;
+            }
+
+        }
+
     </style>
 </head>
 
 <body>
 
-<div class="container">
+<div class="kartka">
 
-    <div class="verse" id="verse"></div>
+    <!-- Twoja grafika -->
+    <img src="tlo.png" class="tlo" alt="Słowo dla Ciebie">
 
-    <div class="reference" id="reference"></div>
+    <!-- Tutaj kod wstawia wylosowane Słowo -->
+    <div class="cytat">
+
+        <div id="verse"></div>
+
+        <div id="reference"></div>
+
+    </div>
 
 </div>
+
 
 <script>
 
@@ -141,7 +210,7 @@ const fragmenty = [
     },
 
     {
-        tekst: "Ja sam będę pasł moje owce (...). Zagubioną odszukam, zabłąkaną sprowadzę z powrotem, skaleczoną opatrzę, chorą umocnię.",
+        tekst: "Ja sam będę pasł moje owce (...) Zagubioną odszukam, zabłąkaną sprowadzę z powrotem, skaleczoną opatrzę, chorą umocnię.",
         odniesienie: "Ez 34, 15-16"
     },
 
@@ -156,7 +225,7 @@ const fragmenty = [
     },
 
     {
-        tekst: "Nie jest bowiem Bóg niesprawiedliwy, aby zapomniał o czynie waszym i miłości (...)",
+        tekst: "Nie jest bowiem Bóg niesprawiedliwy, aby zapomniał o czynie waszym i miłości (...).",
         odniesienie: "Hbr 6, 10"
     },
 
@@ -176,7 +245,7 @@ const fragmenty = [
     },
 
     {
-        tekst: "Pan na nowo będzie się cieszył ze świadczenia ci dobrodziejstw, jak cieszył się wyświadczając je twoim przodkom (...)",
+        tekst: "Pan na nowo będzie się cieszył ze świadczenia ci dobrodziejstw, jak cieszył się wyświadczając je twoim przodkom (...).",
         odniesienie: "Pwt 30, 9"
     },
 
@@ -251,17 +320,17 @@ const fragmenty = [
     },
 
     {
-        tekst: "Pan niósł cię, jak niesie ojciec swego syna, całą drogę, którą szliście (...)",
+        tekst: "Pan niósł cię, jak niesie ojciec swego syna, całą drogę, którą szliście (...).",
         odniesienie: "Pwt 1, 31"
     },
 
     {
-        tekst: "Jeśli będziesz Go szukał, On pozwoli ci siebie znaleźć (...)",
+        tekst: "Jeśli będziesz Go szukał, On pozwoli ci siebie znaleźć (...).",
         odniesienie: "1Krn 28, 9"
     },
 
     {
-        tekst: "Lecz On zna drogę, którą kroczę (...)",
+        tekst: "Lecz On zna drogę, którą kroczę (...).",
         odniesienie: "Hi 23, 10"
     }
 
@@ -286,7 +355,7 @@ if (!pozostale || pozostale.length === 0) {
 }
 
 
-// Losowanie numeru z pozostałych
+// Losujemy jeden z pozostałych
 
 const losowyIndex = Math.floor(
     Math.random() * pozostale.length
@@ -295,12 +364,12 @@ const losowyIndex = Math.floor(
 const numerFragmentu = pozostale[losowyIndex];
 
 
-// Usuwamy wylosowany fragment z kolejki
+// Usuwamy go z kolejki
 
 pozostale.splice(losowyIndex, 1);
 
 
-// Zapisujemy pozostałe fragmenty
+// Zapamiętujemy kolejkę
 
 localStorage.setItem(
     "pozostaleFragmenty",
@@ -308,7 +377,7 @@ localStorage.setItem(
 );
 
 
-// Wyświetlamy Słowo
+// Wyświetlamy cytat
 
 document.getElementById("verse").textContent =
     "„" + fragmenty[numerFragmentu].tekst + "”";
