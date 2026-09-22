@@ -25,7 +25,6 @@ body {
     font-family: Georgia, serif;
 }
 
-/* CAŁA KARTKA */
 .kartka {
     position: relative;
     width: 100%;
@@ -33,18 +32,15 @@ body {
     line-height: 1;
 }
 
-/* TWOJE TŁO */
 .tlo {
     display: block;
     width: 100%;
     height: auto;
 }
 
-/* OBSZAR, W KTÓRYM POJAWIA SIĘ CYTAT */
 .obszar-cytatu {
     position: absolute;
 
-    /* dokładne położenie względem grafiki */
     left: 8%;
     top: 32.3%;
 
@@ -63,7 +59,6 @@ body {
     overflow: hidden;
 }
 
-/* CYTAT */
 #verse {
     width: 100%;
     margin: 0;
@@ -82,7 +77,6 @@ body {
     word-wrap: break-word;
 }
 
-/* SIGLUM */
 #reference {
     width: 100%;
 
@@ -99,7 +93,6 @@ body {
     flex-shrink: 0;
 }
 
-/* TELEFON */
 @media (max-width: 600px) {
 
     #verse {
@@ -112,7 +105,6 @@ body {
     }
 }
 
-/* MAŁY TELEFON */
 @media (max-width: 400px) {
 
     #verse {
@@ -151,10 +143,15 @@ body {
 <script>
 
 /* =========================================================
-   42 SŁOWA
+   BAZA CYTATÓW
+   70 CYTATÓW
    ========================================================= */
 
 const fragmenty = [
+
+/* =========================
+   DOTYCHCZASOWE 42
+   ========================= */
 
 {
     tekst: "Znam twoje czyny: trud i twoją wytrwałość.",
@@ -364,9 +361,186 @@ const fragmenty = [
 {
     tekst: "Lecz On zna drogę, którą kroczę (...)",
     siglum: "Hi 23, 10"
+},
+
+
+/* =========================
+   NOWE CYTATY
+   ========================= */
+
+{
+    tekst: "Sądzę bowiem, że cierpień teraźniejszych nie można stawiać na równi z chwałą, która ma się w nas objawić.",
+    siglum: "Rz 8, 18"
+},
+
+{
+    tekst: "Jeżeli więc ktoś pozostaje w Chrystusie, jest nowym stworzeniem. To, co dawne, minęło, a oto wszystko stało się nowe.",
+    siglum: "2 Kor 5, 17"
+},
+
+{
+    tekst: "Choćby mnie opuścili ojciec mój i matka, to jednak Pan mnie przygarnie.",
+    siglum: "Ps 27, 10"
+},
+
+{
+    tekst: "Ufaj Panu, bądź mężny, niech się twe serce umocni, ufaj Panu!",
+    siglum: "Ps 27, 14"
+},
+
+{
+    tekst: "On odpuszcza wszystkie twoje winy, On leczy wszystkie twe niemoce, On życie twoje wybawia od zguby, On wieńczy cię łaską i zmiłowaniem, On twoje dni nasyca dobrami: odnawia się młodość twoja jak orła.",
+    siglum: "Ps 103, 3-5"
+},
+
+{
+    tekst: "lecz Pan mi powiedział: „Wystarczy ci mojej łaski. Moc bowiem w słabości się doskonali”. Najchętniej więc będę się chlubił z moich słabości, aby zamieszkała we mnie moc Chrystusa.",
+    siglum: "2 Kor 12, 9"
+},
+
+{
+    tekst: "Słyszałem twoją modlitwę, widziałem twoje łzy. Uzdrowię cię.",
+    siglum: "Iz 38, 5"
+},
+
+{
+    tekst: "Pan będzie walczył za was, a wy będziecie spokojni",
+    siglum: "Wj 14, 14"
+},
+
+{
+    tekst: "Jedni wolą rydwan, drudzy konie, a nasza siła w imieniu Pana, Boga naszego. Tamci się zachwiali i upadli, a my stoimy i trwamy.",
+    siglum: "Ps 20, 8-9"
+},
+
+{
+    tekst: "Wołaj do Mnie, a odpowiem ci, oznajmię ci rzeczy wielkie i niezgłębione, jakich nie znasz",
+    siglum: "Jr 33, 3"
+},
+
+{
+    tekst: "Pan, twój Bóg jest pośród ciebie, Mocarz - On zbawi, uniesie się weselem nad tobą, odnowi swą miłość, wzniesie okrzyk radości.",
+    siglum: "So 3, 17"
+},
+
+{
+    tekst: "Którzy we łzach sieją, żąć będą w radości.",
+    siglum: "Ps 126, 5"
+},
+
+{
+    tekst: "Bóg jest miłością.",
+    siglum: "1 J 4, 8"
+},
+
+{
+    tekst: "Zanim ukształtowałem cię w łonie matki, znałem cię.",
+    siglum: "Jr 1, 5"
+},
+
+{
+    tekst: "Choćby wasze grzechy były jak szkarłat, jak śnieg wybieleją.",
+    siglum: "Iz 1, 18"
+},
+
+{
+    tekst: "Dlatego powiadam ci: Odpuszczone są jej liczne grzechy, ponieważ bardzo umiłowała.",
+    siglum: "Łk 7, 47"
+},
+
+{
+    tekst: "Dlatego że Pan jest litościwy i miłosierny, odpuszcza grzechy i zbawia w czasie utrapienia.",
+    siglum: "Syr 2, 11"
+},
+
+{
+    tekst: "JESTEM, który JESTEM.",
+    siglum: "Wj 3, 14"
+},
+
+{
+    tekst: "Trzeba bardziej słuchać Boga niż ludzi.",
+    siglum: "Dz 5, 29"
+},
+
+{
+    tekst: "Ufaj, córko! Twoja wiara cię ocaliła.",
+    siglum: "Mt 9, 22"
+},
+
+{
+    tekst: "Ufają Tobie znający Twe imię, bo nie opuszczasz, Panie, tych, co Cię szukają.",
+    siglum: "Ps 9, 11"
+},
+
+{
+    tekst: "Wszystko mogę w Tym, który mnie umacnia",
+    siglum: "Flp 4, 13"
+},
+
+{
+    tekst: "Albowiem Pan jest twoją ucieczką, jako obrońcę wziąłeś sobie Najwyższego.",
+    siglum: "Ps 91, 9"
+},
+
+{
+    tekst: "Ja go wybawię, bo przylgnął do Mnie; osłonię go, bo uznał moje imię. Będzie Mnie wzywał, a Ja go wysłucham i będę z nim w utrapieniu.",
+    siglum: "Ps 91, 14-15"
+},
+
+{
+    tekst: "Nie bój się, wierz tylko!",
+    siglum: "Mk 5, 36"
+},
+
+{
+    tekst: "Jezus zaraz przemówił do nich: Odwagi! Ja jestem, nie bójcie się!",
+    siglum: "Mt 14, 27"
+},
+
+{
+    tekst: "Jeżeli Bóg z nami, któż przeciwko nam?",
+    siglum: "Rz 8, 31"
+},
+
+{
+    tekst: "Ja jestem dobrym pasterzem. Dobry pasterz daje życie swoje za owce.",
+    siglum: "J 10, 11"
+},
+
+{
+    tekst: "Odpowiedział mu Jezus: Ja jestem drogą i prawdą i życiem.",
+    siglum: "J 14, 6"
 }
 
 ];
+
+
+/* =========================================================
+   WERSJA BAZY
+   ========================================================= */
+
+/*
+   Zmieniamy numer tylko wtedy, gdy zmieniamy bazę cytatów.
+   Dzięki temu użytkownicy, którzy wcześniej korzystali
+   z wersji 42 cytatów, dostaną nową pulę 70 cytatów.
+*/
+
+const WERSJA_BAZY = 2;
+
+const zapisanaWersja =
+    localStorage.getItem("wersjaBazy");
+
+
+if (zapisanaWersja !== String(WERSJA_BAZY)) {
+
+    localStorage.removeItem("pozostaleFragmenty");
+
+    localStorage.setItem(
+        "wersjaBazy",
+        String(WERSJA_BAZY)
+    );
+}
 
 
 /* =========================================================
@@ -377,12 +551,17 @@ let pozostale = JSON.parse(
     localStorage.getItem("pozostaleFragmenty")
 );
 
+
 if (!Array.isArray(pozostale) || pozostale.length === 0) {
-    pozostale = fragmenty.map((_, index) => index);
+
+    pozostale = fragmenty.map(
+        (_, index) => index
+    );
 }
 
 
 /* LOSOWANIE */
+
 const losowyIndex = Math.floor(
     Math.random() * pozostale.length
 );
@@ -391,7 +570,12 @@ const numer = pozostale[losowyIndex];
 
 
 /* USUWAMY WYLOSOWANY */
-pozostale.splice(losowyIndex, 1);
+
+pozostale.splice(
+    losowyIndex,
+    1
+);
+
 
 localStorage.setItem(
     "pozostaleFragmenty",
@@ -399,7 +583,10 @@ localStorage.setItem(
 );
 
 
-/* WYŚWIETLAMY */
+/* =========================================================
+   WYŚWIETLANIE
+   ========================================================= */
+
 document.getElementById("verse").textContent =
     "„" + fragmenty[numer].tekst + "”";
 
@@ -413,33 +600,35 @@ document.getElementById("reference").textContent =
 
 function dopasujTekst() {
 
-    const obszar = document.querySelector(".obszar-cytatu");
-    const verse = document.getElementById("verse");
-    const reference = document.getElementById("reference");
+    const obszar =
+        document.querySelector(".obszar-cytatu");
 
-    /*
-       Zaczynamy od dużej czcionki.
-    */
+    const verse =
+        document.getElementById("verse");
+
+    const reference =
+        document.getElementById("reference");
+
 
     let rozmiar = Math.min(
         34,
-        Math.max(18, window.innerWidth * 0.037)
+        Math.max(
+            18,
+            window.innerWidth * 0.037
+        )
     );
 
-    verse.style.fontSize = rozmiar + "px";
 
+    verse.style.fontSize =
+        rozmiar + "px";
 
-    /*
-       Jeżeli tekst jest za duży,
-       zmniejszamy go po 1 px,
-       aż zmieści się w ramce.
-    */
 
     while (
         (
-            verse.scrollHeight + reference.offsetHeight + 25
-            > obszar.clientHeight
-        )
+            verse.scrollHeight +
+            reference.offsetHeight +
+            25
+        ) > obszar.clientHeight
         &&
         rozmiar > 15
     ) {
@@ -452,20 +641,35 @@ function dopasujTekst() {
 }
 
 
-/* Czekamy aż obraz się załaduje */
-window.addEventListener("load", function() {
+/* =========================================================
+   START
+   ========================================================= */
 
-    setTimeout(dopasujTekst, 100);
+window.addEventListener(
+    "load",
+    function() {
 
-});
+        setTimeout(
+            dopasujTekst,
+            100
+        );
+
+    }
+);
 
 
-/* Dopasowanie również po zmianie wielkości okna */
-window.addEventListener("resize", function() {
+/* =========================================================
+   ZMIANA ROZMIARU OKNA
+   ========================================================= */
 
-    dopasujTekst();
+window.addEventListener(
+    "resize",
+    function() {
 
-});
+        dopasujTekst();
+
+    }
+);
 
 </script>
 
